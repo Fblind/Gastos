@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-12">
+    <a class="btn btn-primary pull-right" ng-href="/#/gastos/nuevo">Crear Nuevo</a></br></br>
+  </div>
+</div>
+<div class="row">
+  <div class="table-responsive">
+    <table st-table="displayedCollection" st-safe-src="gasto.gastosActuales"
+           class="table table-striped">
+      <th colspan="5"><input st-search="" class="form-control" placeholder="Buscar en toda la tabla..." type="text"/></th>
+      <thead>
+        <tr>
+          <th st-sort="nombreProducto">Nombre</th>
+          <th st-sort="fecha">Fecha</th>
+          <th st-sort="lugar">Lugar</th>
+          <th st-sort="precio">Precio</th>
+          <th st-sort="quien">Quien</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="gasto in displayedCollection">
+          <td>{{ gasto.nombreProducto }}</td>
+          <td>{{ gasto.fecha | date: 'shortDate' }}</td>
+          <td>{{ gasto.lugar }}</td>
+          <td>{{ gasto.precio }}</td>
+          <td>{{ gasto.quien }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
