@@ -15,10 +15,6 @@ gastoController.$inject = ['gasto', 'gastosActuales'];
 
 function gastoController(gasto, gastosActuales){
   var vm = this;
-
-  //TODO: Quienes tendria que venir en el resolve
-  vm.quienes = gasto.quienes();
-  vm.crearNuevo = crearNuevo;
   //vm.gastosActuales = gastosActuales;
 
   //TODO: Hacer test con esto
@@ -38,10 +34,4 @@ function gastoController(gasto, gastosActuales){
       quien: 'Vale'
     }
   ];
-
-  function crearNuevo(gastoACrear){
-    console.log('gasto', gastoACrear);
-    gasto.agregarGasto(gastoACrear);
-  }
-
 }

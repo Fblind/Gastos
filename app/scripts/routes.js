@@ -15,20 +15,24 @@ function config($routeProvider) {
     })
     .when('/gastos/nuevo', {
       templateUrl: 'views/nuevogasto.html',
-      controller: 'GastosCtrl',
+      controller: 'GastosnuevoCtrl',
       controllerAs: 'gasto',
       resolve:{
-        gastosActuales: getGastos
+        quienes: getQuienes
       }
     })
     .otherwise({
       redirectTo: '/'
     });
-
-  getGastos.$inject = ['gasto'];
-  function getGastos(gasto) {
-    return gasto.getGastos();
-  }
-
 };
+
+getGastos.$inject = ['gasto'];
+function getGastos(gasto) {
+  return gasto.getGastos();
+}
+getQuienes.$inject = ['gasto'];
+function getQuienes(gasto) {
+  return gasto.quienes();
+}
+
 
