@@ -11,15 +11,14 @@
 angular.module('gastosApp')
   .controller('GastosCtrl', gastoController);
 
-gastoController.$inject = ['gasto', 'gastosActuales', 'routes'];
+gastoController.$inject = ['gasto', 'gastosActuales'];
 
-function gastoController(gasto, gastosActuales, routes){
+function gastoController(gasto, gastosActuales){
   var vm = this;
 
   //TODO: Quienes tendria que venir en el resolve
   vm.quienes = gasto.quienes();
   vm.crearNuevo = crearNuevo;
-  vm.routes = routes;
   //vm.gastosActuales = gastosActuales;
 
   //TODO: Hacer test con esto
