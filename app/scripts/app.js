@@ -18,5 +18,6 @@ angular
     'ngTouch',
     //'ui.bootstrap'
     'smart-table',
-    'gastos-routes'
+    'gastos-routes',
+    'modules-config'
   ]);

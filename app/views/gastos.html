@@ -22,7 +22,7 @@
           <td>{{ gasto.nombreProducto }}</td>
           <td>{{ gasto.fecha | date: 'shortDate' }}</td>
           <td>{{ gasto.lugar }}</td>
-          <td>{{ gasto.precio }}</td>
+          <td>{{ gasto.precio | currency}}</td>
           <td>{{ gasto.quien }}</td>
         </tr>
       </tbody>

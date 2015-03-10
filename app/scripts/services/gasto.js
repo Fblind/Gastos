@@ -8,25 +8,31 @@
  * Service in the gastosApp.
  */
 angular.module('gastosApp')
-  .service('gasto', function () {
-    var gasto = {};
-    var gastos = [];
+  .service('gasto', gastoService);
 
-    function quienes(){
-      return ['Vale', 'Facu'];
-    }
+gastoService.$inject = ['Restangular'];
+function gastoService(Restangular) {
+  var gasto = {};
+  var gastos = Restangular.all('gastos');
 
-    function agregarGasto(gasto){
-      gastos.push(gasto);
-    }
+  function quienes(){
+    return ['Vale', 'Facu'];
+  }
 
-    function getGastos(){
-      return gastos;
-    }
+  function agregarGasto(gasto){
+    gastos.post(gasto).then(function(gastoUpdateado){
+      console.log(gastoUpdateado);
+    });
+  }
 
-    gasto.quienes = quienes;
-    gasto.agregarGasto = agregarGasto;
-    gasto.getGastos = getGastos;
-    return gasto;
+  function getGastos(){
+    //TODO: Usar promises
+    return gastos.getList();
+  }
 
-  });
+  gasto.quienes = quienes;
+  gasto.agregarGasto = agregarGasto;
+  gasto.getGastos = getGastos;
+
+  return gasto;
+};

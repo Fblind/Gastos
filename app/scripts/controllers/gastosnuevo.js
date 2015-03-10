@@ -18,7 +18,6 @@ function gastoNuevoController(gasto, quienes){
   vm.crearNuevo = crearNuevo;
 
   function crearNuevo(gastoACrear){
-    console.log('gasto', gastoACrear);
     gasto.agregarGasto(gastoACrear);
   }
 
