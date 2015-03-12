@@ -39,10 +39,14 @@ function gastoService(Restangular, $q) {
   }
 
   function eliminar(id){
-    debugger;
+    var deferred = $q.defer();
+
     gastos.get(id).then(function(gasto){
-      gasto.remove();
+      deferred.resolve(gasto.remove());
     });
+
+    return deferred.promise;
+
   }
 
   function guardarGasto(gasto){

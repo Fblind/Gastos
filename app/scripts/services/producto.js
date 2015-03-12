@@ -30,8 +30,8 @@ function productoService(Restangular, $q) {
     return deferred.promise;
   }
 
-  function modificarProducto(producto){
-    productos.get(producto.id).then(function(productoAModificar){
+  function modificarProducto(id, producto){
+    productos.get(id).then(function(productoAModificar){
       productoAModificar.put(producto);
     });
   }

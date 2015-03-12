@@ -87,7 +87,7 @@
       </td>
       <td style="white-space: nowrap">
         <form editable-form name="rowform"
-              onbeforesave="gasto.guardarProducto($data)"
+              onbeforesave="gasto.guardarProducto($data, producto.id)"
               ng-show="rowform.$visible" class="form-buttons form-inline"
               shown="gasto.productoAInsertar === producto">
           <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary" title="guardar">

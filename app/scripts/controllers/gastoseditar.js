@@ -10,8 +10,8 @@
 angular.module('gastosApp')
   .controller('GastoseditarCtrl', gastoEditarController);
 
-gastoEditarController.$inject = ['gastoActual', 'productosActuales', 'producto', 'quienes', 'gasto']
-function gastoEditarController(gastoActual, productosActuales, producto, quienes, gasto) {
+gastoEditarController.$inject = ['gastoActual', 'productosActuales', 'producto', 'quienes', 'gasto', '$location']
+function gastoEditarController(gastoActual, productosActuales, producto, quienes, gasto, $location) {
   var vm = this;
   vm.gasto = gastoActual;
   vm.productos = productosActuales;
@@ -22,14 +22,15 @@ function gastoEditarController(gastoActual, productosActuales, producto, quienes
   vm.eliminarGasto = eliminarGasto;
   vm.guardarGasto = guardarGasto;
 
-  function guardarProducto(productoAGuardar){
-    if(_.isUndefined(productoAGuardar.id)){
+  function guardarProducto(productoAGuardar, id){
+
+    if(_.isUndefined(id)){
       productoAGuardar.gasto_id = vm.gasto.id;
       producto.agregarProducto(productoAGuardar).then(function(productoGuardado){
         productoAGuardar.id = productoGuardado.id;
       });
     }else{
-      producto.modificarProducto(productoAGuardar);
+      producto.modificarProducto(id, productoAGuardar);
     }
   }
 
@@ -51,7 +52,9 @@ function gastoEditarController(gastoActual, productosActuales, producto, quienes
   }
 
   function eliminarGasto(id){
-    gasto.eliminar(id);
+    gasto.eliminar(id).then(function(){
+      $location.path('/gastos');
+    });
   }
 
   function guardarGasto(gastoAGuardar){
