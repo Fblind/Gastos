@@ -24,7 +24,6 @@ function productoService(Restangular, $q) {
     var deferred = $q.defer();
 
     productos.post(producto).then(function(productoGuardado){
-      debugger;
       deferred.resolve(productoGuardado);
     });
 
