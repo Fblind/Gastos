@@ -15,7 +15,9 @@ function gastoService(Restangular) {
   var gasto = {};
   var gastos = Restangular.all('gastos');
 
+  //TODO: Que agreguen quienes en gastos
   function quienes(){
+    //return gastos.getList('quienes');
     return ['Vale', 'Facu'];
   }
 
@@ -30,9 +32,14 @@ function gastoService(Restangular) {
     return gastos.getList();
   }
 
+  function getGasto(id){
+    return gastos.get(id);
+  }
+
   gasto.quienes = quienes;
   gasto.agregarGasto = agregarGasto;
   gasto.getGastos = getGastos;
+  gasto.getGasto = getGasto;
 
   return gasto;
 };

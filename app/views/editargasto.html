@@ -1,0 +1,76 @@
+<h3>Gasto</h3>
+<p>
+  <table class="table">
+    <tbody>
+      <tr>
+        <td>Lugar:</td>
+        <td>{{ gasto.gasto.lugar }}</td>
+      </tr>
+      <tr>
+        <td>Fecha:</td>
+        <td>{{ gasto.gasto.fecha | date: 'shortDate' }}</td>
+      </tr>
+      <tr>
+        <td>Precio:</td>
+        <td>{{ gasto.gasto.precio | currency }}</td>
+      </tr>
+      <tr>
+        <td>Quien:</td>
+        <td>{{ gasto.gasto.quien }}</td>
+      </tr>
+    </tbody>
+  </table>
+</p>
+<h3>Productos <button class="btn btn-primary pull-right" ng-click="gasto.agregarProducto();">
+  <span class="glyphicon glyphicon-plus"></span>
+</button></h3>
+<div>
+  <table class="table table-bordered table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Fecha</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tr ng-repeat="producto in gasto.productos">
+      <td>
+        <span editable-text="producto.nombre" e-name="nombre" e-form="rowform" e-required>
+          {{ producto.nombre }}
+        </span>
+      </td>
+      <td>
+        <span editable-date="producto.fecha" e-name="fecha" e-form="rowform" e-required>
+          {{ producto.fecha | date: 'shortDate' }}
+        </span>
+      </td>
+      <td>
+        <span editable-number="producto.precio" e-step="any" e-name="precio" e-form="rowform" e-required>
+          {{ producto.precio | currency }}
+        </span>
+      </td>
+      <td style="white-space: nowrap">
+        <form editable-form name="rowform"
+              onbeforesave="gasto.guardarProducto($data, producto.id)"
+              ng-show="rowform.$visible" class="form-buttons form-inline"
+              shown="gasto.productoAInsertar === producto">
+          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary" title="guardar">
+            <span class="glyphicon glyphicon-ok"></span>
+          </button>
+          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default" title="cancelar">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+        </form>
+        <div class="buttons" ng-show="!rowform.$visible">
+          <button class="btn btn-primary" ng-click="rowform.$show()" title="editar">
+            <span class="glyphicon glyphicon-edit"></span>
+          </button>
+          <button class="btn btn-danger" ng-click="gasto.eliminarProducto($index, producto.id)" title="eliminar">
+            <span class="glyphicon glyphicon-trash"></span>
+          </button>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
