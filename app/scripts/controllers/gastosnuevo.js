@@ -10,15 +10,17 @@
 angular.module('gastosApp')
   .controller('GastosnuevoCtrl', gastoNuevoController);
 
-gastoNuevoController.$inject = ['gasto', 'quienes'];
-function gastoNuevoController(gasto, quienes){
+gastoNuevoController.$inject = ['gasto', 'quienes', '$location'];
+function gastoNuevoController(gasto, quienes, $location){
 
   var vm = this;
   vm.quienes = quienes;
   vm.crearNuevo = crearNuevo;
 
   function crearNuevo(gastoACrear){
-    gasto.agregarGasto(gastoACrear);
+    gasto.agregarGasto(gastoACrear).then(function(gastoCreado){
+      $location.path('/gastos/' + gastoCreado.id);
+    });
   }
 
 }

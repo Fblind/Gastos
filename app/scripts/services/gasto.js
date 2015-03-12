@@ -10,8 +10,8 @@
 angular.module('gastosApp')
   .service('gasto', gastoService);
 
-gastoService.$inject = ['Restangular'];
-function gastoService(Restangular) {
+gastoService.$inject = ['Restangular', '$q'];
+function gastoService(Restangular, $q) {
   var gasto = {};
   var gastos = Restangular.all('gastos');
 
@@ -22,9 +22,11 @@ function gastoService(Restangular) {
   }
 
   function agregarGasto(gasto){
+    var deferred = $q.defer();
     gastos.post(gasto).then(function(gastoUpdateado){
-      console.log(gastoUpdateado);
+      deferred.resolve(gastoUpdateado);
     });
+    return deferred.promise;
   }
 
   function getGastos(){
