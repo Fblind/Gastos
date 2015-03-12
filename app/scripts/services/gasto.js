@@ -38,10 +38,27 @@ function gastoService(Restangular, $q) {
     return gastos.get(id);
   }
 
+  function eliminar(id){
+    debugger;
+    gastos.get(id).then(function(gasto){
+      gasto.remove();
+    });
+  }
+
+  function guardarGasto(gasto){
+    debugger;
+    gastos.get(gasto.id).then(function(gastoAGuardar){
+      gastoAGuardar.put(gasto);
+    });
+  }
+
+
   gasto.quienes = quienes;
   gasto.agregarGasto = agregarGasto;
   gasto.getGastos = getGastos;
   gasto.getGasto = getGasto;
+  gasto.eliminar = eliminar;
+  gasto.guardarGasto = guardarGasto;
 
   return gasto;
 };

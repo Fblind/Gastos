@@ -10,14 +10,17 @@
 angular.module('gastosApp')
   .controller('GastoseditarCtrl', gastoEditarController);
 
-gastoEditarController.$inject = ['gastoActual', 'productosActuales', 'producto']
-function gastoEditarController(gastoActual, productosActuales, producto) {
+gastoEditarController.$inject = ['gastoActual', 'productosActuales', 'producto', 'quienes', 'gasto']
+function gastoEditarController(gastoActual, productosActuales, producto, quienes, gasto) {
   var vm = this;
   vm.gasto = gastoActual;
   vm.productos = productosActuales;
+  vm.quienes = quienes;
   vm.agregarProducto = agregarProducto;
   vm.guardarProducto = guardarProducto;
   vm.eliminarProducto = eliminarProducto;
+  vm.eliminarGasto = eliminarGasto;
+  vm.guardarGasto = guardarGasto;
 
   function guardarProducto(productoAGuardar){
     if(_.isUndefined(productoAGuardar.id)){
@@ -40,11 +43,19 @@ function gastoEditarController(gastoActual, productosActuales, producto) {
 
   function agregarProducto(){
     vm.productoAInsertar = {
-      //id: $scope.productos.length + 1,
       nombre: '',
       fecha: '',
       precio: ''
     };
     vm.productos.push(vm.productoAInsertar);
+  }
+
+  function eliminarGasto(id){
+    gasto.eliminar(id);
+  }
+
+  function guardarGasto(gastoAGuardar){
+    gastoAGuardar.id = vm.gasto.id;
+    gasto.guardarGasto(gastoAGuardar);
   }
 };

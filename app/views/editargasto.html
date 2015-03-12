@@ -1,22 +1,63 @@
-<h3>Gasto</h3>
+<h3>Gasto
+  <div class="pull-right" ng-show="!formGasto.$visible">
+    <button class="btn btn-primary" ng-click="formGasto.$show()" title="editar">
+      <span class="glyphicon glyphicon-edit"></span>
+    </button>
+    <button class="btn btn-danger" ng-click="gasto.eliminarGasto(gasto.gasto.id)" title="eliminar">
+      <span class="glyphicon glyphicon-trash"></span>
+    </button>
+  </div>
+</h3>
 <p>
   <table class="table">
     <tbody>
       <tr>
         <td>Lugar:</td>
-        <td>{{ gasto.gasto.lugar }}</td>
+        <td>
+          <span editable-text="gasto.gasto.lugar" e-name="lugar" e-form="formGasto" e-required>
+            {{ gasto.gasto.lugar }}
+          </span>
+        </td>
       </tr>
       <tr>
         <td>Fecha:</td>
-        <td>{{ gasto.gasto.fecha | date: 'shortDate' }}</td>
+        <td>
+          <span editable-date="gasto.gasto.fecha" e-name="fecha" e-form="formGasto" e-required>
+            {{ gasto.gasto.fecha | date: 'shortDate' }}
+          </span>
+        </td>
       </tr>
       <tr>
         <td>Precio:</td>
-        <td>{{ gasto.gasto.precio | currency }}</td>
+        <td>
+          <span editable-text="gasto.gasto.precio" e-name="precio" e-form="formGasto" e-required>
+            {{ gasto.gasto.precio | currency }}
+          </span>
+        </td>
       </tr>
       <tr>
         <td>Quien:</td>
-        <td>{{ gasto.gasto.quien }}</td>
+        <td>
+          <span editable-select="gasto.gasto.quien" e-name="quien" e-form="formGasto" e-ng-options="quien as quien for quien in gasto.quienes">
+            {{ gasto.gasto.quien }}
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <form editable-form name="formGasto"
+                onbeforesave="gasto.guardarGasto($data)"
+                ng-show="formGasto.$visible" class="form-buttons form-inline">
+            <button type="submit" ng-disabled="formGasto.$waiting" class="btn btn-primary" title="guardar">
+              <span class="glyphicon glyphicon-ok"></span>
+            </button>
+            <button type="button" ng-disabled="formGasto.$waiting" ng-click="formGasto.$cancel()"
+                    class="btn btn-default" title="cancelar">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </form>
+        </td>
       </tr>
     </tbody>
   </table>

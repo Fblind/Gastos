@@ -27,7 +27,8 @@ function config($routeProvider) {
       controllerAs: 'gasto',
       resolve:{
         gastoActual: getGasto,
-        productosActuales: getProductosByGasto
+        productosActuales: getProductosByGasto,
+        quienes: getQuienes
       }
     })
     .otherwise({
