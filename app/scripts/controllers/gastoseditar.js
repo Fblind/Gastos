@@ -19,13 +19,14 @@ function gastoEditarController(gastoActual, productosActuales, producto) {
   vm.guardarProducto = guardarProducto;
   vm.eliminarProducto = eliminarProducto;
 
-  function guardarProducto(productoAGuardar, id){
-    //TODO: Que actualice el id despues de guardar, en el then de agregarProducto
-    if(_.isUndefined(id)){
+  function guardarProducto(productoAGuardar){
+    if(_.isUndefined(productoAGuardar.id)){
       productoAGuardar.gasto_id = vm.gasto.id;
-      producto.agregarProducto(productoAGuardar);
+      producto.agregarProducto(productoAGuardar).then(function(productoGuardado){
+        productoAGuardar.id = productoGuardado.id;
+      });
     }else{
-      producto.modificarProducto(id, productoAGuardar);
+      producto.modificarProducto(productoAGuardar);
     }
   }
 

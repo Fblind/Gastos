@@ -10,8 +10,8 @@
 angular.module('gastosApp')
   .service('producto', productoService);
 
-productoService.$inject = ['Restangular']
-function productoService(Restangular) {
+productoService.$inject = ['Restangular', '$q']
+function productoService(Restangular, $q) {
   var producto = {};
   var productos = Restangular.all('productos');
 
@@ -20,12 +20,19 @@ function productoService(Restangular) {
   }
 
   function agregarProducto(producto){
-    //TODO: Hacerlo con promesas y que se actualice el id del producto en el controller
-    return productos.post(producto);
+    //TODO: Que se actualice el id del producto en el controller, ver como manejar errores, tal vez un service de errores ?
+    var deferred = $q.defer();
+
+    productos.post(producto).then(function(productoGuardado){
+      debugger;
+      deferred.resolve(productoGuardado);
+    });
+
+    return deferred.promise;
   }
 
-  function modificarProducto(id, producto){
-    productos.get(id).then(function(productoAModificar){
+  function modificarProducto(producto){
+    productos.get(producto.id).then(function(productoAModificar){
       productoAModificar.put(producto);
     });
   }

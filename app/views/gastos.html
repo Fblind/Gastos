@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <a class="btn btn-primary pull-right" ng-href="/#/gastos/nuevo">Crear Nuevo</a></br></br>
+    <a class="btn btn-primary pull-right" ng-href="/#/gastos/nuevo"><span class="glyphicon glyphicon-plus"></span></a></br></br>
   </div>
 </div>
 <div class="row">
@@ -11,9 +11,7 @@
       <thead>
         <tr>
           <th st-sort="lugar">Lugar</th>
-          <!--<th st-sort="nombreProducto">Nombre</th>-->
           <th st-sort="fecha">Fecha</th>
-
           <th st-sort="precio">Precio</th>
           <th st-sort="quien">Quien</th>
           <th st-sort="detalle">Ver detalle</th>
@@ -22,7 +20,6 @@
       <tbody>
       <tr ng-repeat="gasto in displayedCollection">
           <td>{{ gasto.lugar }}</td>
-        <!--<td>{{ gasto.nombreProducto }}</td>-->
           <td>{{ gasto.fecha | date: 'shortDate' }}</td>
           <td>{{ gasto.precio | currency}}</td>
           <td>{{ gasto.quien }}</td>
