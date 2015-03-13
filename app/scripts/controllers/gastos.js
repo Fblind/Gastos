@@ -11,9 +11,9 @@
 angular.module('gastosApp')
   .controller('GastosCtrl', gastoController);
 
-gastoController.$inject = ['gasto', 'gastosActuales'];
+gastoController.$inject = ['gastosActuales'];
 
-function gastoController(gasto, gastosActuales){
+function gastoController(gastosActuales){
   var vm = this;
   vm.gastosActuales = gastosActuales;
 }

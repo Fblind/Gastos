@@ -50,7 +50,6 @@ function gastoService(Restangular, $q) {
   }
 
   function guardarGasto(gasto){
-    debugger;
     gastos.get(gasto.id).then(function(gastoAGuardar){
       gastoAGuardar.put(gasto);
     });
