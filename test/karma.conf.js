@@ -27,6 +27,9 @@ module.exports = function(config) {
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/angular-smart-table/dist/smart-table.js',
+      'bower_components/restangular/dist/restangular.js',
+      'bower_components/underscore/underscore.js',
+      'bower_components/angular-xeditable/dist/js/xeditable.js',
       'app/scripts/**/*.js',
       //'test/mock/**/*.js',
       'test/spec/**/*.js'

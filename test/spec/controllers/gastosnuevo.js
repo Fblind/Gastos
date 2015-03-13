@@ -6,17 +6,37 @@ describe('Controller: GastosnuevoCtrl', function () {
   beforeEach(module('gastosApp'));
 
   var GastosnuevoCtrl,
-    scope;
+    quienes,
+    unGasto;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
+  beforeEach(inject(function ($controller) {
+    unGasto = {
+      fecha: new Date(),
+      lugar: 'Chango mas',
+      precio: 20.5,
+      quien: 'Facu'
+    };
+    quienes = [
+      'Facu',
+      'Vale'
+    ];
     GastosnuevoCtrl = $controller('GastosnuevoCtrl', {
-      $scope: scope
+      quienes: quienes
     });
   }));
 
-  /*it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
-  });*/
+  it('Debe traer 2 quienes', function () {
+    expect(GastosnuevoCtrl.quienes.length).toBe(2);
+  });
+
+  it('Debe traer quienes', function () {
+    expect(GastosnuevoCtrl.quienes).toBe(quienes);
+  });
+
+  it('Debe crearse un gasto correctamente', function () {
+    //TODO: Implement it
+  });
+
+
 });
